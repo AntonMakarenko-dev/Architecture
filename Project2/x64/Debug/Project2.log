@@ -1,3 +1,3 @@
-﻿  LabArhInt.cpp
-C:\Users\anton\source\repos\Project2\Project2\LabArhInt.cpp(10,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+﻿  LabArh.cpp
+C:\Users\anton\source\repos\Project2\Project2\LabArh.cpp(360,15): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
   Project2.vcxproj -> C:\Users\anton\source\repos\Project2\x64\Debug\Project2.exe
