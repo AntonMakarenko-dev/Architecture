@@ -1,25 +1,25 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <windows.h>
 #include <iomanip>
 #include <ctime>
 
 void test_float() {
     Sleep(1000);
-    cout << "Повторный запуск программы с типом float" << endl;
+    cout << "РџРѕРІС‚РѕСЂРЅС‹Р№ Р·Р°РїСѓСЃРє РїСЂРѕРіСЂР°РјРјС‹ СЃ С‚РёРїРѕРј float" << endl;
     int a;
-    cout << "Введите размер матрицы и вектора: ";
+    cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РјР°С‚СЂРёС†С‹ Рё РІРµРєС‚РѕСЂР°: ";
     cin >> a;
 
-    // Проверка на корректный размер
+    // РџСЂРѕРІРµСЂРєР° РЅР° РєРѕСЂСЂРµРєС‚РЅС‹Р№ СЂР°Р·РјРµСЂ
     if (a < 0) {
-        cout << "Ошибка: размер должен быть неотрицательным!" << endl;
+        cout << "РћС€РёР±РєР°: СЂР°Р·РјРµСЂ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рј!" << endl;
         return;
     }
 
     float* Vector, * RezultMV, * RezultVM, * RezultVMopt;
     float** Matrix;
 
-    // Выделение памяти
+    // Р’С‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё
     Vector = new float[a];
     RezultMV = new float[a];
     RezultVM = new float[a];
@@ -30,8 +30,8 @@ void test_float() {
         Matrix[i] = new float[a];
     }
 
-    // Заполнение вектора и матрицы случайными значениями
-    cout << "Инициализация данных..." << endl;
+    // Р—Р°РїРѕР»РЅРµРЅРёРµ РІРµРєС‚РѕСЂР° Рё РјР°С‚СЂРёС†С‹ СЃР»СѓС‡Р°Р№РЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё
+    cout << "РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РґР°РЅРЅС‹С…..." << endl;
     for (int i = 0; i < a; i++)
     {
         RezultMV[i] = 0;
@@ -44,7 +44,7 @@ void test_float() {
         for (int j = 0; j < a; j++)
             Matrix[i][j] = (rand() % 199 - 99) * 0.01f;
 
-    // Умножение матрицы на вектор
+    // РЈРјРЅРѕР¶РµРЅРёРµ РјР°С‚СЂРёС†С‹ РЅР° РІРµРєС‚РѕСЂ
     for (int i = 0; i < a; i++)
         RezultMV[i] = 0;
 
@@ -52,9 +52,9 @@ void test_float() {
     for (int i = 0; i < a; i++)
         for (int j = 0; j < a; j++)
             RezultMV[i] = RezultMV[i] + Matrix[i][j] * Vector[j];
-    cout << "M * V = " << clock() - t2 << " мс" << endl;
+    cout << "M * V = " << clock() - t2 << " РјСЃ" << endl;
 
-    // Умножение вектора на матрицу
+    // РЈРјРЅРѕР¶РµРЅРёРµ РІРµРєС‚РѕСЂР° РЅР° РјР°С‚СЂРёС†Сѓ
     for (int i = 0; i < a; i++)
         RezultVM[i] = 0;
 
@@ -62,9 +62,9 @@ void test_float() {
     for (int i = 0; i < a; i++)
         for (int j = 0; j < a; j++)
             RezultVM[i] = RezultVM[i] + Matrix[j][i] * Vector[j];
-    cout << "V * M = " << clock() - t2 << " мс" << endl;
+    cout << "V * M = " << clock() - t2 << " РјСЃ" << endl;
 
-    // Умножение вектора на матрицу (оптимизированный вариант)
+    // РЈРјРЅРѕР¶РµРЅРёРµ РІРµРєС‚РѕСЂР° РЅР° РјР°С‚СЂРёС†Сѓ (РѕРїС‚РёРјРёР·РёСЂРѕРІР°РЅРЅС‹Р№ РІР°СЂРёР°РЅС‚)
     for (int i = 0; i < a; i++)
         RezultVMopt[i] = 0;
 
@@ -72,41 +72,41 @@ void test_float() {
     for (int i = 0; i < a; i++)
         for (int j = 0; j < a; j++)
             RezultVMopt[j] = RezultVMopt[j] + Matrix[i][j] * Vector[i];
-    cout << "V * M opt = " << clock() - t2 << " мс" << endl;
+    cout << "V * M opt = " << clock() - t2 << " РјСЃ" << endl;
 
-    // Демонстрация результата для маленьких размеров
+    // Р”РµРјРѕРЅСЃС‚СЂР°С†РёСЏ СЂРµР·СѓР»СЊС‚Р°С‚Р° РґР»СЏ РјР°Р»РµРЅСЊРєРёС… СЂР°Р·РјРµСЂРѕРІ
     if (a <= 10) {
-        cout << "\nВектор V: ";
+        cout << "\nР’РµРєС‚РѕСЂ V: ";
         for (int i = 0; i < a; i++)
             cout << setw(6) << Vector[i];
 
-        cout << "\n\nМатрица M:\n";
+        cout << "\n\nРњР°С‚СЂРёС†Р° M:\n";
         for (int i = 0; i < a; i++) {
             for (int j = 0; j < a; j++)
                 cout << setw(6) << Matrix[i][j];
             cout << endl;
         }
 
-        cout << "\n\nРезультат M*V: ";
+        cout << "\n\nР РµР·СѓР»СЊС‚Р°С‚ M*V: ";
         for (int i = 0; i < a; i++)
             cout << setw(8) << RezultMV[i];
-        cout << "\nM * V = " << clock() - t2 << " мс" << endl;
+        cout << "\nM * V = " << clock() - t2 << " РјСЃ" << endl;
         cout << endl;
 
-        cout << "\n\nРезультат V*M: ";
+        cout << "\n\nР РµР·СѓР»СЊС‚Р°С‚ V*M: ";
         for (int i = 0; i < a; i++)
             cout << setw(8) << RezultVM[i];
-        cout << "\nV * M = " << clock() - t2 << " мс" << endl;
+        cout << "\nV * M = " << clock() - t2 << " РјСЃ" << endl;
         cout << endl;
 
-        cout << "\n\nРезультат V*M opt: ";
+        cout << "\n\nР РµР·СѓР»СЊС‚Р°С‚ V*M opt: ";
         for (int i = 0; i < a; i++)
             cout << setw(8) << RezultVMopt[i];
-        cout << "\nV * M opt = " << clock() - t2 << " мс" << endl;
+        cout << "\nV * M opt = " << clock() - t2 << " РјСЃ" << endl;
         cout << endl;
     }
 
-    // Освобождение памяти
+    // РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё
     delete[] Vector;
     delete[] RezultMV;
     delete[] RezultVM;
@@ -116,27 +116,27 @@ void test_float() {
     }
     delete[] Matrix;
 
-    cout << "\nПамять очищена. Программа завершена." << endl;
+    cout << "\nРџР°РјСЏС‚СЊ РѕС‡РёС‰РµРЅР°. РџСЂРѕРіСЂР°РјРјР° Р·Р°РІРµСЂС€РµРЅР°." << endl;
 }
 
 void test_double(){
-    cout << "Повторной запуск программы с типом double." << endl;
+    cout << "РџРѕРІС‚РѕСЂРЅРѕР№ Р·Р°РїСѓСЃРє РїСЂРѕРіСЂР°РјРјС‹ СЃ С‚РёРїРѕРј double." << endl;
     Sleep(1000);
 
     int n;
-    cout << "Введите размер матрицы и вектора: ";
+    cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РјР°С‚СЂРёС†С‹ Рё РІРµРєС‚РѕСЂР°: ";
     cin >> n;
 
-    // Проверка на корректный размер
+    // РџСЂРѕРІРµСЂРєР° РЅР° РєРѕСЂСЂРµРєС‚РЅС‹Р№ СЂР°Р·РјРµСЂ
     if (n <= 0) {
-        cout << "Ошибка: размер должен быть положительным!" << endl;
+        cout << "РћС€РёР±РєР°: СЂР°Р·РјРµСЂ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹Рј!" << endl;
         return;
     }
 
     double* Vect, * RezMV, * RezVM, * RezVMopt;
     double** Matr;
 
-    // Выделение памяти
+    // Р’С‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё
     Vect = new double[n];
     RezMV = new double[n];
     RezVM = new double[n];
@@ -147,8 +147,8 @@ void test_double(){
         Matr[i] = new double[n];
     }
 
-    // Заполнение вектора и матрицы случайными значениями
-    cout << "Инициализация данных..." << endl;
+    // Р—Р°РїРѕР»РЅРµРЅРёРµ РІРµРєС‚РѕСЂР° Рё РјР°С‚СЂРёС†С‹ СЃР»СѓС‡Р°Р№РЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё
+    cout << "РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РґР°РЅРЅС‹С…..." << endl;
     for (int i = 0; i < n; i++)
     {
         RezMV[i] = 0;
@@ -161,7 +161,7 @@ void test_double(){
         for (int j = 0; j < n; j++)
             Matr[i][j] = (rand() % 199 - 99) * 0.01;
 
-    // Умножение матрицы на вектор
+    // РЈРјРЅРѕР¶РµРЅРёРµ РјР°С‚СЂРёС†С‹ РЅР° РІРµРєС‚РѕСЂ
     for (int i = 0; i < n; i++)
         RezMV[i] = 0;
 
@@ -169,9 +169,9 @@ void test_double(){
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             RezMV[i] = RezMV[i] + Matr[i][j] * Vect[j];
-    cout << "M * V = " << clock() - t1 << " мс" << endl;
+    cout << "M * V = " << clock() - t1 << " РјСЃ" << endl;
 
-    // Умножение вектора на матрицу
+    // РЈРјРЅРѕР¶РµРЅРёРµ РІРµРєС‚РѕСЂР° РЅР° РјР°С‚СЂРёС†Сѓ
     for (int i = 0; i < n; i++)
         RezVM[i] = 0;
 
@@ -179,9 +179,9 @@ void test_double(){
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             RezVM[i] = RezVM[i] + Matr[j][i] * Vect[j];
-    cout << "V * M = " << clock() - t1 << " мс" << endl;
+    cout << "V * M = " << clock() - t1 << " РјСЃ" << endl;
 
-    // Умножение вектора на матрицу (оптимизированный вариант)
+    // РЈРјРЅРѕР¶РµРЅРёРµ РІРµРєС‚РѕСЂР° РЅР° РјР°С‚СЂРёС†Сѓ (РѕРїС‚РёРјРёР·РёСЂРѕРІР°РЅРЅС‹Р№ РІР°СЂРёР°РЅС‚)
     for (int i = 0; i < n; i++)
         RezVMopt[i] = 0;
 
@@ -189,41 +189,41 @@ void test_double(){
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             RezVMopt[j] = RezVMopt[j] + Matr[i][j] * Vect[i];
-    cout << "V * M opt = " << clock() - t1 << " мс" << endl;
+    cout << "V * M opt = " << clock() - t1 << " РјСЃ" << endl;
 
-    // Результата для матриц и векторов малой размерности
+    // Р РµР·СѓР»СЊС‚Р°С‚Р° РґР»СЏ РјР°С‚СЂРёС† Рё РІРµРєС‚РѕСЂРѕРІ РјР°Р»РѕР№ СЂР°Р·РјРµСЂРЅРѕСЃС‚Рё
     if (n <= 10) {
-        cout << "\nВектор V: ";
+        cout << "\nР’РµРєС‚РѕСЂ V: ";
         for (int i = 0; i < n; i++)
             cout << setw(6) << Vect[i];
 
-        cout << "\n\nМатрица M:\n";
+        cout << "\n\nРњР°С‚СЂРёС†Р° M:\n";
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++)
                 cout << setw(6) << Matr[i][j];
             cout << endl;
         }
 
-        cout << "\n\nРезультат M*V: ";
+        cout << "\n\nР РµР·СѓР»СЊС‚Р°С‚ M*V: ";
         for (int i = 0; i < n; i++)
             cout << setw(8) << RezMV[i];
-        cout << "\nM * V = " << clock() - t1 << " мс" << endl;
+        cout << "\nM * V = " << clock() - t1 << " РјСЃ" << endl;
         cout << endl;
 
-        cout << "\n\nРезультат V*M: ";
+        cout << "\n\nР РµР·СѓР»СЊС‚Р°С‚ V*M: ";
         for (int i = 0; i < n; i++)
             cout << setw(8) << RezVM[i];
-        cout << "\nV * M = " << clock() - t1 << " мс" << endl;
+        cout << "\nV * M = " << clock() - t1 << " РјСЃ" << endl;
         cout << endl;
 
-        cout << "\n\nРезультат V*M opt: ";
+        cout << "\n\nР РµР·СѓР»СЊС‚Р°С‚ V*M opt: ";
         for (int i = 0; i < n; i++)
             cout << setw(8) << RezVMopt[i];
-        cout << "\nV * M opt = " << clock() - t1 << " мс" << endl;
+        cout << "\nV * M opt = " << clock() - t1 << " РјСЃ" << endl;
         cout << endl;
     }
 
-    // Освобождение памяти
+    // РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё
     delete[] Vect;
     delete[] RezMV;
     delete[] RezVM;
@@ -233,28 +233,28 @@ void test_double(){
     }
     delete[] Matr;
 
-    cout << "\nПамять очищенна. Программа завершена." << endl;
+    cout << "\nРџР°РјСЏС‚СЊ РѕС‡РёС‰РµРЅРЅР°. РџСЂРѕРіСЂР°РјРјР° Р·Р°РІРµСЂС€РµРЅР°." << endl;
 }
 
 void test_int(){
-    cout << "Программа для умножения матрицы на вектор и наоборот." << endl;
+    cout << "РџСЂРѕРіСЂР°РјРјР° РґР»СЏ СѓРјРЅРѕР¶РµРЅРёСЏ РјР°С‚СЂРёС†С‹ РЅР° РІРµРєС‚РѕСЂ Рё РЅР°РѕР±РѕСЂРѕС‚." << endl;
     Sleep(1000);
-    cout << "Запуск программы с типом int." << endl;
+    cout << "Р—Р°РїСѓСЃРє РїСЂРѕРіСЂР°РјРјС‹ СЃ С‚РёРїРѕРј int." << endl;
 
     int n;
-    cout << "Введите размер матрицы и вектора: ";
+    cout << "Р’РІРµРґРёС‚Рµ СЂР°Р·РјРµСЂ РјР°С‚СЂРёС†С‹ Рё РІРµРєС‚РѕСЂР°: ";
     cin >> n;
 
-    // Проверка на корректный размер
+    // РџСЂРѕРІРµСЂРєР° РЅР° РєРѕСЂСЂРµРєС‚РЅС‹Р№ СЂР°Р·РјРµСЂ
     if (n < 0) {
-        cout << "Ошибка: размер должен быть неотрицательным!" << endl;
+        cout << "РћС€РёР±РєР°: СЂР°Р·РјРµСЂ РґРѕР»Р¶РµРЅ Р±С‹С‚СЊ РЅРµРѕС‚СЂРёС†Р°С‚РµР»СЊРЅС‹Рј!" << endl;
         return;
     }
 
     int* Vect, * RezMV, * RezVM, * RezVMopt;
     int** Matr;
 
-    // Выделение памяти
+    // Р’С‹РґРµР»РµРЅРёРµ РїР°РјСЏС‚Рё
     Vect = new int[n];
     RezMV = new int[n];
     RezVM = new int[n];
@@ -265,8 +265,8 @@ void test_int(){
         Matr[i] = new int[n];
     }
 
-    // Заполнение вектора и матрицы случайными значениями
-    cout << "Инициализация данных..." << endl;
+    // Р—Р°РїРѕР»РЅРµРЅРёРµ РІРµРєС‚РѕСЂР° Рё РјР°С‚СЂРёС†С‹ СЃР»СѓС‡Р°Р№РЅС‹РјРё Р·РЅР°С‡РµРЅРёСЏРјРё
+    cout << "РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РґР°РЅРЅС‹С…..." << endl;
     for (int i = 0; i < n; i++)
     {
         RezMV[i] = 0;
@@ -279,7 +279,7 @@ void test_int(){
         for (int j = 0; j < n; j++)
             Matr[i][j] = rand() % 300 - 99;
 
-    // Умножение матрицы на вектор
+    // РЈРјРЅРѕР¶РµРЅРёРµ РјР°С‚СЂРёС†С‹ РЅР° РІРµРєС‚РѕСЂ
     for (int i = 0; i < n; i++)
         RezMV[i] = 0;
 
@@ -287,9 +287,9 @@ void test_int(){
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             RezMV[i] = RezMV[i] + Matr[i][j] * Vect[j];
-    cout << "M * V = " << clock() - t1 << " мс" << endl;
+    cout << "M * V = " << clock() - t1 << " РјСЃ" << endl;
 
-    // Умножение вектора на матрицу
+    // РЈРјРЅРѕР¶РµРЅРёРµ РІРµРєС‚РѕСЂР° РЅР° РјР°С‚СЂРёС†Сѓ
     for (int i = 0; i < n; i++)
         RezVM[i] = 0;
 
@@ -297,9 +297,9 @@ void test_int(){
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             RezVM[i] = RezVM[i] + Matr[j][i] * Vect[j];
-    cout << "V * M = " << clock() - t1 << " мс" << endl;
+    cout << "V * M = " << clock() - t1 << " РјСЃ" << endl;
 
-    // Умножение вектора на матрицу (оптимизированный вариант)
+    // РЈРјРЅРѕР¶РµРЅРёРµ РІРµРєС‚РѕСЂР° РЅР° РјР°С‚СЂРёС†Сѓ (РѕРїС‚РёРјРёР·РёСЂРѕРІР°РЅРЅС‹Р№ РІР°СЂРёР°РЅС‚)
     for (int i = 0; i < n; i++)
         RezVMopt[i] = 0;
 
@@ -307,41 +307,41 @@ void test_int(){
     for (int i = 0; i < n; i++)
         for (int j = 0; j < n; j++)
             RezVMopt[j] = RezVMopt[j] + Matr[i][j] * Vect[i];
-    cout << "V * M opt = " << clock() - t1 << " мс" << endl;
+    cout << "V * M opt = " << clock() - t1 << " РјСЃ" << endl;
 
-    // Результата для матриц и векторов малой размерности
+    // Р РµР·СѓР»СЊС‚Р°С‚Р° РґР»СЏ РјР°С‚СЂРёС† Рё РІРµРєС‚РѕСЂРѕРІ РјР°Р»РѕР№ СЂР°Р·РјРµСЂРЅРѕСЃС‚Рё
     if (n <= 10) {
-        cout << "\nВектор V: ";
+        cout << "\nР’РµРєС‚РѕСЂ V: ";
         for (int i = 0; i < n; i++)
             cout << setw(6) << Vect[i];
 
-        cout << "\n\nМатрица M:\n";
+        cout << "\n\nРњР°С‚СЂРёС†Р° M:\n";
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++)
                 cout << setw(6) << Matr[i][j];
             cout << endl;
         }
 
-        cout << "\n\nРезультат M*V: ";
+        cout << "\n\nР РµР·СѓР»СЊС‚Р°С‚ M*V: ";
         for (int i = 0; i < n; i++)
             cout << setw(8) << RezMV[i];
-        cout << "\nM * V = " << clock() - t1 << " мс" << endl;
+        cout << "\nM * V = " << clock() - t1 << " РјСЃ" << endl;
         cout << endl;
 
-        cout << "\n\nРезультат V*M: ";
+        cout << "\n\nР РµР·СѓР»СЊС‚Р°С‚ V*M: ";
         for (int i = 0; i < n; i++)
             cout << setw(8) << RezVM[i];
-        cout << "\nV * M = " << clock() - t1 << " мс" << endl;
+        cout << "\nV * M = " << clock() - t1 << " РјСЃ" << endl;
         cout << endl;
 
-        cout << "\n\nРезультат V*M opt: ";
+        cout << "\n\nР РµР·СѓР»СЊС‚Р°С‚ V*M opt: ";
         for (int i = 0; i < n; i++)
             cout << setw(8) << RezVMopt[i];
-        cout << "\nV * M opt = " << clock() - t1 << " мс" << endl;
+        cout << "\nV * M opt = " << clock() - t1 << " РјСЃ" << endl;
         cout << endl;
     }
 
-    // Освобождение памяти
+    // РћСЃРІРѕР±РѕР¶РґРµРЅРёРµ РїР°РјСЏС‚Рё
     delete[] Vect;
     delete[] RezMV;
     delete[] RezVM;
@@ -351,7 +351,7 @@ void test_int(){
     }
     delete[] Matr;
 
-    cout << "\nПамять очищенна. Программа завершена." << endl;
+    cout << "\nРџР°РјСЏС‚СЊ РѕС‡РёС‰РµРЅРЅР°. РџСЂРѕРіСЂР°РјРјР° Р·Р°РІРµСЂС€РµРЅР°." << endl;
 }
 
 int main()
