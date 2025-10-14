@@ -2,6 +2,7 @@
 #include <windows.h>
 #include <iomanip>
 #include <ctime>
+using namespace std;
 
 void test_float() {
     Sleep(1000);
